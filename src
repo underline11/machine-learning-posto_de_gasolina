@@ -1,0 +1,54 @@
+create database postodegasolina;
+USE postodegasolina;
+create table combustiveis (
+id_combustivel int auto_increment
+primary key,
+tipo varchar(50) not null,
+preco_por_litro decimal(5,2) not null
+);
+create table bombas (
+id_bomba int auto_increment
+primary key,
+id_combustivel int not null,
+descricao varchar(100) not null
+);
+create table funcionarios (
+id_funcionario int auto_increment
+primary key,
+nome varchar (100) not null,
+cargo varchar(50) not null,
+turno enum ('id_funcionario, nome, cargo, turno, telefone'),
+telefone varchar (15)
+);
+create table clientes (
+id_cliente int auto_increment
+primary key,
+nome varchar(100) not null,
+telefone varchar(15) not null,
+email varchar(100) not null
+);
+create table abastecimentos (
+id_abastecimento int auto_increment primary key,
+id_cliente int not null,
+id_bomba int not null,
+id_funcionario int not null,
+volume decimal(6,2),
+valor_total decimal(8,2),
+data_abastecimento datetime not null
+);
+create table servicos (
+id_servico int auto_increment 
+primary key,
+descricao varchar(255),checkpreco decimal(3,2)
+);
+create table transacoes (
+id_transacao int auto_increment primary key,
+id_cliente int not null,
+id_servico int not null,
+id_abastecimento int not null,
+forma_pagamento enum('Id_Transacao', 'Id_Cliente', 'Id_Servico', 'Id_Abastecimento', 'Forma_Pagamento'),
+total_pago decimal(10,2),
+data_transacao datetime
+);
+
+
